@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-# nuav.py is the new av upgrade to guardian.
+# linuAV is the new av upgrade to guardian.
 import os
 import stat
 
