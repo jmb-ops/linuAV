@@ -158,7 +158,7 @@ def validate_input():
             'properly spelled and use a full path if folder is not in same dir as linuAV.','\n')
 
             root_dir = input('dir: ')
-            out_file = input('file: ')
+            out_file = input('name your file: ')
             scan_directory_to_file(root_dir, out_file)
 
         elif sel == '2':
@@ -174,7 +174,7 @@ def validate_input():
         print('Invalid Selection: 1, 2, h or q please')
 
 def main():
-    '''this is the nuav program'''
+    '''this is the linuAV program'''
     print('l')
     print('  i')
     print('    n')
