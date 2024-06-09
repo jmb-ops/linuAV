@@ -2,9 +2,9 @@
 
 ## what it is: Antivirus Software for Kali Linux (and other gnu/linux).
 
-how its called: `python3 linuAV`
+how its called: `python3 linuav`
 
-or `./linuAV` if you `chmod +x linuAV`
+or `./linuAV` if you `chmod +x linuav`
 
 ![crop_photo_linuAV](https://github.com/jmb-ops/linuAV/assets/135682697/c6ed5751-b0d7-4bb8-81a0-8fa866be62fe)
 
