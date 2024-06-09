@@ -1,0 +1,191 @@
+#!/usr/bin/python3
+# linuAV is the new av upgrade to guardian.
+import os
+import stat
+
+def scan_directory_to_file(user_dir, output_file):
+    '''This function is used to create the .txt files for storage and analysis. It filters out dynamically
+    changing folders for linux. It also filters for non-executable modes on files and passes on
+    only executable files.'''
+    with open(output_file, 'w') as f:
+        for dirpath, dirnames, filenames in os.walk(user_dir):
+            for filename in filenames:
+                path = os.path.join(dirpath, filename)
+                if '/proc' in path or '/run' in path or '/tmp' in path:
+                    continue
+                else:
+                    try:
+                        stat_info = os.stat(path)
+                        st_mode = stat_info.st_mode
+                        permission_str = stat.filemode(st_mode)
+                        if 'x' in permission_str:
+                            f.write(path + '\n')
+                    except:
+                        pass
+
+    print('\n','Text file creation completed.. now what?','\n')
+
+    validate_input()
+
+def find_new_x():
+    '''This function takes the contents of .txt files and puts them in a list container.
+    it then uses the list.remove() to remove all accounted for files from the second container
+    leaving only the unknown files.'''
+    while True:
+
+        try:
+            txt_file = input('enter baseline file: ')
+            print()
+            file1 = open(txt_file)
+            content = file1.read()
+            break
+    
+        except:
+
+            print('File not found! please try again.','\n')
+
+    clist = content.split('\n')
+    
+    while True:
+
+        try:
+
+            txt_file2 = input('enter scan file: ')
+            print()
+            file2 = open(txt_file2)
+            content2 = file2.read()
+            break
+
+        except:
+
+            print('File not found! please try again.','\n')
+    
+    clist2 = content2.split('\n')
+    
+    for file in clist:
+        try:
+            
+            clist2.remove(file)
+        except:
+            pass 
+    
+    print('==Potential======Malwares======Listed========Below============','\n')
+    
+    count = 0
+    for execs in clist2:
+        print(f'potential malware found:{execs}')
+        count += 1
+
+    print()
+
+    print('==============================================================')
+
+    print('\n','There are:',count,' Potential Malwares detected, listed above.','\n')
+
+    print('Reminder!: not all found files are malware.','\n'
+          ' You may have downloaded an app and forgot to update your baseline.txt file.','\n'
+          ' or if you run sudo apt update and forget to update your baseline.txt all those files','\n'
+          ' will show up in the next scan.','\n')
+
+    print('\n','Scan completed.. now what?','\n')
+
+    validate_input()
+
+
+def help_menu():
+    '''This functions as a description and instructions'''
+    print('linuAV helps strengthin your security posture.','\n'
+          'while tools like "ClamAV" and "chkrootkit" check for KNOWN signatures','\n'
+          'linuAV will check for ALL NEW malwares not yet defined by other AV\'s','\n'
+          'When used together in unison any linux will be more protected than ever.','\n','\n' 
+          'How you ask? This tool creates a baseline file of your','\n'
+          'system "ideally disease free".','\n','\n'
+          'You will want to create your baseline file before you visit a','\n'
+          'random/sketchy site or download something from the internet;','\n'
+          'linuAV will show you all NEW files added to your OS using linuAV\'s','\n'
+          'scanfile option, this will let you view the file path of the new','\n'
+          'potential malware.','\n','\n'
+          '*It is up to you on how you use the information presented to you*','\n','\n'
+          'This program was created on a kali linux for all linux users.','\n','\n'
+          'LET\'S GO STEP BY STEP:','\n','\n'
+          'Step one: Creating your baseline file','\n','\n'
+          '     Press 1, enter root dir "/", name file [baseline.txt]','\n'
+          'hit enter and wait for return of options menu. The file will be','\n'
+          'stored in the same directory as linuAV.','\n','\n'
+          '     ****"If its your first time using, after your text file is','\n'
+          'created exit "q" program".*****','\n','\n'
+          '     -If returning start at step two-','\n','\n'
+          '     *Only after* you roam the internet and want to check for any','\n'
+          'drive-by malwares or to just view where a new file has been downloaded','\n'
+          'you will continue on to making your scan file.','\n','\n'
+          'Step two: Now create your scan file','\n','\n'
+          'Repeat process','\n'
+          '     Press 1, enter root dir "/", now name scan file [scanfile.txt]','\n','\n'
+          'Step three: Next we compare your baseline file to your scan file','\n','\n'
+          '     Press 2, type baseline.txt, hit enter, type scanfile.txt, hit enter,','\n','\n'
+          'wait for results.','\n','\n'
+          'Note: If you download a new program, that you believe is trust worthy,','\n'
+          'you will have to update your baseline file "baseline.txt" or it will','\n'
+          'show up as possible malware in the next scan.')
+    
+    print('Help completed.. now what?','\n')
+
+    validate_input()
+
+
+def validate_input():
+    '''This function acts as the main menu of the program and input validator.'''
+    print('#########################')
+    print('                        #')
+    print('press 1 to make a file. #################')
+    print('                                        #')
+    print('press 2 to scan files.                  #')
+    print('                                        #')
+    print('press \'h\' for help and welcome message. #       l i n u A V     V.1.0.0')
+    print('                                        #') 
+    print('press \'q\' to quit.                      #')
+    print('                     ####################')
+    print('######################','\n')
+
+    while True:
+
+        sel = input('> ')
+
+        if sel == '1':
+
+            print('Helpful tip: the dir prompt will not check for misspelled directories,','\n'
+            'so if you are selecting a directory other than root "/", make sure it is','\n'
+            'properly spelled and use a full path if folder is not in same dir as linuAV.','\n')
+
+            root_dir = input('dir: ')
+            out_file = input('name your file: ')
+            scan_directory_to_file(root_dir, out_file)
+
+        elif sel == '2':
+            find_new_x()
+
+        elif sel == 'h':
+            help_menu()
+
+        elif sel == 'q':
+            print('Thank you for using linuAV!')
+            exit()
+
+        print('Invalid Selection: 1, 2, h or q please')
+
+def main():
+    '''this is the linuAV program'''
+    print('l')
+    print('  i')
+    print('    n')
+    print('      u')
+    print('        A')
+    print('          V','\n')
+    print('(Immortalized By: Jason Bain, currenty employable if impressed.)')
+    print()
+    print('(Help menu and instructions written by Darlene Svela.)','\n')
+
+    validate_input()
+
+if __name__ == "__main__":
+    main()
