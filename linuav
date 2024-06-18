@@ -1,7 +1,8 @@
 #!/usr/bin/python3
-# linuAV is the new av upgrade to guardian.
+# linuav is the new av upgrade to guardian.
 import os
 import stat
+from banner import colors, banner
 
 def scan_directory_to_file(user_dir, output_file):
     '''This function is used to create the .txt files for storage and analysis. It filters out dynamically
@@ -23,7 +24,7 @@ def scan_directory_to_file(user_dir, output_file):
                     except:
                         pass
 
-    print('\n','Text file creation completed.. now what?','\n')
+    print('\n',colors.BOLDYELLOW + 'Text file creation completed.. now what?' + colors.RESET,'\n')
 
     validate_input()
 
@@ -34,7 +35,7 @@ def find_new_x():
     while True:
 
         try:
-            txt_file = input('enter baseline file: ')
+            txt_file = input(colors.BOLDYELLOW + 'enter baseline file: ' + colors.RESET)
             print()
             file1 = open(txt_file)
             content = file1.read()
@@ -42,15 +43,15 @@ def find_new_x():
     
         except:
 
-            print('File not found! please try again.','\n')
+            print(colors.BOLDRED + 'File not found! please try again.' + colors.RESET,'\n')
 
-    clist = content.split('\n')
+    content_list = content.split('\n')
     
     while True:
 
         try:
 
-            txt_file2 = input('enter scan file: ')
+            txt_file2 = input(colors.BOLDYELLOW + 'enter scan file: ' + colors.RESET)
             print()
             file2 = open(txt_file2)
             content2 = file2.read()
@@ -58,36 +59,43 @@ def find_new_x():
 
         except:
 
-            print('File not found! please try again.','\n')
+            print(colors.BOLDRED + 'File not found! please try again.' + colors.RESET,'\n')
     
-    clist2 = content2.split('\n')
+    content_list2 = content2.split('\n')
     
-    for file in clist:
+    for file in content_list:
         try:
             
-            clist2.remove(file)
+            content_list2.remove(file)
         except:
             pass 
     
-    print('==Potential======Malwares======Listed========Below============','\n')
+    print(colors.BOLDBLACK + '==Potential======Malwares======Listed========Below============' + colors.RESET,'\n')
     
     count = 0
-    for execs in clist2:
-        print(f'potential malware found:{execs}')
+    for execs in content_list2:
+        print(colors.BOLDRED + 'potential malware found:',execs + colors.RESET)
         count += 1
 
     print()
 
-    print('==============================================================')
+    print(colors.BOLDBLACK + '==============================================================' + colors.RESET)
 
-    print('\n','There are:',count,' Potential Malwares detected, listed above.','\n')
+    if count == 0:
+    
+        print('\n','There are:',colors.BOLDGREEN ,count, colors.RESET,' Potential Malwares detected, listed above.','\n')
 
-    print('Reminder!: not all found files are malware.','\n'
+    else:
+
+        print('\n','There are:',colors.BOLDRED  ,count, colors.RESET,' Potential Malwares detected, listed above.','\n')
+
+
+    print(colors.BOLDYELLOW + 'Reminder!: not all found files are malware.','\n'
           ' You may have downloaded an app and forgot to update your baseline.txt file.','\n'
           ' or if you run sudo apt update and forget to update your baseline.txt all those files','\n'
-          ' will show up in the next scan.','\n')
+          ' will show up in the next scan.'+ colors.RESET,'\n')
 
-    print('\n','Scan completed.. now what?','\n')
+    print('\n',colors.BOLDGREEN + 'Scan completed.. now what?' + colors.RESET,'\n')
 
     validate_input()
 
@@ -128,37 +136,37 @@ def help_menu():
           'you will have to update your baseline file "baseline.txt" or it will','\n'
           'show up as possible malware in the next scan.')
     
-    print('Help completed.. now what?','\n')
+    print(colors.BOLDGREEN + 'Help completed.. now what?' + colors.RESET,'\n')
 
     validate_input()
 
 
 def validate_input():
     '''This function acts as the main menu of the program and input validator.'''
-    print('#########################')
-    print('                        #')
-    print('press 1 to make a file. #################')
-    print('                                        #')
-    print('press 2 to scan files.                  #')
-    print('                                        #')
-    print('press \'h\' for help and welcome message. #       l i n u A V     V.1.0.0')
-    print('                                        #') 
-    print('press \'q\' to quit.                      #')
-    print('                     ####################')
-    print('######################','\n')
+    print(colors.BOLDGREEN + '#########################' + colors.RESET)
+    print(colors.BOLDGREEN + '                        #' + colors.RESET)
+    print(colors.BOLDGREEN + 'press 1 to make a file. #################' + colors.RESET)
+    print(colors.BOLDGREEN + '                                        #' + colors.RESET)
+    print(colors.BOLDGREEN + 'press 2 to scan files.                  #' + colors.RESET)
+    print(colors.BOLDGREEN + '                                        #' + colors.RESET)
+    print(colors.BOLDGREEN + 'press \'h\' for help and welcome message. #       l i n u A V     V.1.0.1' + colors.RESET)
+    print(colors.BOLDGREEN + '                                        #' + colors.RESET) 
+    print(colors.BOLDGREEN + 'press \'q\' to quit.                      #' + colors.RESET)
+    print(colors.BOLDGREEN + '                     ####################' + colors.RESET)
+    print(colors.BOLDGREEN + '######################' + colors.RESET,'\n')
 
     while True:
 
-        sel = input('> ')
+        sel = input(colors.BOLDYELLOW + '> ' + colors.RESET)
 
         if sel == '1':
 
-            print('Helpful tip: the dir prompt will not check for misspelled directories,','\n'
+            print(colors.BOLDBLUE + 'Helpful tip: the dir prompt will not check for misspelled directories,','\n'
             'so if you are selecting a directory other than root "/", make sure it is','\n'
-            'properly spelled and use a full path if folder is not in same dir as linuAV.','\n')
+            'properly spelled and use a full path if folder is not in same dir as linuAV.' + colors.RESET,'\n')
 
-            root_dir = input('dir: ')
-            out_file = input('name your file: ')
+            root_dir = input(colors.BOLDYELLOW + 'dir: ' + colors.RESET)
+            out_file = input(colors.BOLDYELLOW + 'name your file: ' + colors.RESET)
             scan_directory_to_file(root_dir, out_file)
 
         elif sel == '2':
@@ -168,22 +176,15 @@ def validate_input():
             help_menu()
 
         elif sel == 'q':
-            print('Thank you for using linuAV!')
+            print(colors.BOLDGREEN + 'Thank you for using linuAV!' + colors.RESET)
             exit()
 
-        print('Invalid Selection: 1, 2, h or q please')
+        print(colors.BOLDRED + 'Invalid Selection: 1, 2, h or q please' + colors.RESET)
 
 def main():
     '''this is the linuAV program'''
-    print('l')
-    print('  i')
-    print('    n')
-    print('      u')
-    print('        A')
-    print('          V','\n')
-    print('(Immortalized By: Jason Bain, currenty employable if impressed.)')
-    print()
-    print('(Help menu and instructions written by Darlene Svela.)','\n')
+
+    banner()
 
     validate_input()
 
