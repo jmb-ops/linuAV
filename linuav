@@ -150,6 +150,8 @@ def validate_input():
     print(colors.BOLDGREEN + '                                        #' + colors.RESET)
     print(colors.BOLDGREEN + 'press 2 to scan files.                  #' + colors.RESET)
     print(colors.BOLDGREEN + '                                        #' + colors.RESET)
+    print(colors.BOLDGREEN + 'press 3 to hash a file.                 #' + colors.RESET)
+    print(colors.BOLDGREEN + '                                        #' + colors.RESET)
     print(colors.BOLDGREEN + 'press \'h\' for help and welcome message. #       l i n u A V     V.1.0.1' + colors.RESET)
     print(colors.BOLDGREEN + '                                        #' + colors.RESET) 
     print(colors.BOLDGREEN + 'press \'q\' to quit.                      #' + colors.RESET)
