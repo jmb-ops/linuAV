@@ -1,11 +1,12 @@
 # linuAV (Linux Anti-Virus)
 
 # Description
-LinuAV is designed for Anyone who values SECURITY above all else.. It is a very powerful Command-line interface tool built for Linux, that finds ALL new malware including: worms, viruses, Trojans, rootkits, spyware, adware, etc. If it is executable linuAV will find it. LinuAV utilizes a "baseline" .txt file that it creates indexing all executable files in "/" dir aka root folder. (You may also input a folder of your choosing. it does not need to be of the whole file system). The baseline file is considered a to be a clean image of a file system. When you think you have been infected use linuAV to scan your file system against the baseline file, if there are any new executable files that were not in your baseline will be output as potential malware with a full path for further investigation.
+LinuAV is designed for Anyone who values SECURITY above all else.. It is a very powerful Command-line interface tool built for Linux, that finds ALL new malware including: worms, viruses, Trojans, rootkits, spyware, adware, etc. If it is executable linuAV will find it. LinuAV utilizes a "baseline" .txt file that it creates indexing all executable files in "/" dir aka root folder. (You may also input a folder of your choosing. it does not need to be of the whole file system). The baseline file is considered a to be a clean image of a file system. When you think you have been infected use linuAV to scan your file system against the baseline file, if there are any new executable files that were not in your baseline will be output as potential malware with a full path for further investigation. A new feature has been added that can hash the baseline file to prevent tampering.
 
 # Features:
 - Make File: Used for the creation of the baseline.txt file and scanfile.txt which are stored in the same directory as the tool.
 - scan files: Used to scan linux file systems for new malware.
+- hash files: Hash the baseline file and store off internet on a usb, considered multifactor security.
 - help: Useful help message and step by step directions of how to use linuAV.
 - "q" for quit: exits the program.
 
