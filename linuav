@@ -3,6 +3,7 @@
 import os
 import stat
 from banner import colors, banner
+from hash_function import hashfun
 
 def scan_directory_to_file(user_dir, output_file):
     '''This function is used to create the .txt files for storage and analysis. It filters out dynamically
@@ -23,7 +24,7 @@ def scan_directory_to_file(user_dir, output_file):
                             f.write(path + '\n')
                     except:
                         pass
-
+    
     print('\n',colors.BOLDYELLOW + 'Text file creation completed.. now what?' + colors.RESET,'\n')
 
     validate_input()
@@ -171,6 +172,10 @@ def validate_input():
 
         elif sel == '2':
             find_new_x()
+
+        elif sel == '3':
+            hashfun()
+            continue
 
         elif sel == 'h':
             help_menu()
