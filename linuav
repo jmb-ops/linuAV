@@ -103,7 +103,7 @@ def find_new_x():
 
 def help_menu():
     '''This functions as a description and instructions'''
-    print('linuAV helps strengthin your security posture.','\n'
+    print(colors.BOLDBLUE + 'linuAV helps strengthin your security posture.','\n'
           'while tools like "ClamAV" and "chkrootkit" check for KNOWN signatures','\n'
           'linuAV will check for ALL NEW malwares not yet defined by other AV\'s','\n'
           'When used together in unison any linux will be more protected than ever.','\n','\n' 
@@ -135,7 +135,13 @@ def help_menu():
           'wait for results.','\n','\n'
           'Note: If you download a new program, that you believe is trust worthy,','\n'
           'you will have to update your baseline file "baseline.txt" or it will','\n'
-          'show up as possible malware in the next scan.')
+          'show up as possible malware in the next scan.','\n'
+          '*************************************************************************','\n'
+          'This is a new edition to the help menu - option 3 hashing a file.','\n'
+          'After you create your baseline file press 3 and enter your baseline file','\n'
+          'to hash it. Save copies of the baseline.txt AND the hash_file.txt to a','\n'
+          'security dongle aka a flash drive. When in doubt run a diff between the files','\n'
+          'stored locally and your backups to determine tampering.' + colors.RESET)
     
     print(colors.BOLDGREEN + 'Help completed.. now what?' + colors.RESET,'\n')
 
@@ -152,7 +158,7 @@ def validate_input():
     print(colors.BOLDGREEN + '                                        #' + colors.RESET)
     print(colors.BOLDGREEN + 'press 3 to hash a file.                 #' + colors.RESET)
     print(colors.BOLDGREEN + '                                        #' + colors.RESET)
-    print(colors.BOLDGREEN + 'press \'h\' for help and welcome message. #       l i n u A V     V.1.0.1' + colors.RESET)
+    print(colors.BOLDGREEN + 'press \'h\' for help and welcome message. #       l i n u A V     V.1.0.3' + colors.RESET)
     print(colors.BOLDGREEN + '                                        #' + colors.RESET) 
     print(colors.BOLDGREEN + 'press \'q\' to quit.                      #' + colors.RESET)
     print(colors.BOLDGREEN + '                     ####################' + colors.RESET)
